@@ -1,14 +1,14 @@
-from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import Interface.sendWindow
 import codec2b1q
 import signalGraph
 import networkCommunication as nC
 
-class Sender(QDialog):
+class Sender(QtWidgets.QDialog):
     def __init__(self, main_window):
         self.main_window = main_window
-        self.q_dialog = QDialog()
+        self.q_dialog = QtWidgets.QDialog()
         self.sender_window = Interface.sendWindow.Ui_SendWindow()
         self.sender_window.setupUi(self.q_dialog)
         self.sender_window.back_button.clicked.connect(lambda:self.closeWindow())
@@ -37,7 +37,7 @@ class Sender(QDialog):
             for bin_char in str_char_in_bin:
                 self.bin_list.append(int(bin_char))
         #
-        bin_text = ''.join(list(map(str,self.bin_list)))
+        bin_text = ''.join(list(map(str,self.bin_list)))     
         self.sender_window.binary_box.setText(bin_text)
 
         # Encodes the binary list message to a 2B1Q binary list
@@ -48,5 +48,8 @@ class Sender(QDialog):
         self.sender_window.twoboneq_box.setText(encoded_text)
 
         # Plot the graph, save to a file, and load the image in the window
-        ###encoded_message_graph.value = signalGraph.PlotWaveformToFile(encoded_message_text.value)
-        ###bin_message_graph.value = signalGraph.PlotWaveformToFile(bin_message_text.value)
+        encoded_message_graph = signalGraph.PlotWaveformToFile(self.encoded_list, "encoder_grafic.png")
+        self.sender_window.encoded_wave.setPixmap(QtGui.QPixmap(encoded_message_graph))
+        bin_message_graph = signalGraph.PlotWaveformToFile(self.bin_list, "binary_grafic.png")
+        self.sender_window.binary_wave.setPixmap(QtGui.QPixmap(bin_message_graph))
+

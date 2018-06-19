@@ -1,13 +1,13 @@
-from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import Interface.receiveWindow
 import networkCommunication as nc
 import codec2b1q
 
-class Receiver(QDialog):
+class Receiver(QtWidgets.QDialog):
     def __init__(self, main_window):
         self.main_window = main_window
-        self.q_dialog = QDialog()
+        self.q_dialog = QtWidgets.QDialog()
         self.receive_window = Interface.receiveWindow.Ui_ReceiveWindow()
         self.receive_window.setupUi(self.q_dialog)
         self.receive_window.back_button.clicked.connect(lambda: self.closeWindow())
