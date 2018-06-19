@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'sendwindow.ui'
+#
+# Created by: PyQt5 UI code generator 5.10.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_SendWindow(object):
+    def setupUi(self, SendWindow):
+        SendWindow.setObjectName("SendWindow")
+        SendWindow.resize(730, 531)
+        self.graph_groupbox = QtWidgets.QGroupBox(SendWindow)
+        self.graph_groupbox.setGeometry(QtCore.QRect(9, 182, 701, 261))
+        self.graph_groupbox.setTitle("")
+        self.graph_groupbox.setObjectName("graph_groupbox")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.graph_groupbox)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.encoded_wave = QtWidgets.QLabel(self.graph_groupbox)
+        self.encoded_wave.setText("")
+        self.encoded_wave.setObjectName("encoded_wave")
+        self.gridLayout_2.addWidget(self.encoded_wave, 0, 0, 1, 1)
+        self.binary_wave = QtWidgets.QLabel(self.graph_groupbox)
+        self.binary_wave.setText("")
+        self.binary_wave.setObjectName("binary_wave")
+        self.gridLayout_2.addWidget(self.binary_wave, 0, 1, 1, 1)
+        self.boxes_groupbox = QtWidgets.QGroupBox(SendWindow)
+        self.boxes_groupbox.setGeometry(QtCore.QRect(9, 9, 711, 162))
+        self.boxes_groupbox.setTitle("")
+        self.boxes_groupbox.setObjectName("boxes_groupbox")
+        self.gridLayout = QtWidgets.QGridLayout(self.boxes_groupbox)
+        self.gridLayout.setObjectName("gridLayout")
+        self.hostname_label = QtWidgets.QLabel(self.boxes_groupbox)
+        self.hostname_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.hostname_label.setObjectName("hostname_label")
+        self.gridLayout.addWidget(self.hostname_label, 0, 0, 1, 1)
+        self.hostname_box = QtWidgets.QLineEdit(self.boxes_groupbox)
+        self.hostname_box.setText("")
+        self.hostname_box.setObjectName("hostname_box")
+        self.gridLayout.addWidget(self.hostname_box, 0, 1, 1, 1)
+        self.message_label = QtWidgets.QLabel(self.boxes_groupbox)
+        self.message_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.message_label.setObjectName("message_label")
+        self.gridLayout.addWidget(self.message_label, 1, 0, 1, 1)
+        self.message_box = QtWidgets.QLineEdit(self.boxes_groupbox)
+        self.message_box.setObjectName("message_box")
+        self.gridLayout.addWidget(self.message_box, 1, 1, 1, 1)
+        self.binary_label = QtWidgets.QLabel(self.boxes_groupbox)
+        self.binary_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.binary_label.setObjectName("binary_label")
+        self.gridLayout.addWidget(self.binary_label, 2, 0, 1, 1)
+        self.binary_box = QtWidgets.QLineEdit(self.boxes_groupbox)
+        self.binary_box.setObjectName("binary_box")
+        self.gridLayout.addWidget(self.binary_box, 2, 1, 1, 1)
+        self.twoboneq_label = QtWidgets.QLabel(self.boxes_groupbox)
+        self.twoboneq_label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.twoboneq_label.setObjectName("twoboneq_label")
+        self.gridLayout.addWidget(self.twoboneq_label, 3, 0, 1, 1)
+        self.twoboneq_box = QtWidgets.QLineEdit(self.boxes_groupbox)
+        self.twoboneq_box.setObjectName("twoboneq_box")
+        self.gridLayout.addWidget(self.twoboneq_box, 3, 1, 1, 1)
+        self.button_groupbox = QtWidgets.QGroupBox(SendWindow)
+        self.button_groupbox.setGeometry(QtCore.QRect(9, 445, 701, 71))
+        self.button_groupbox.setTitle("")
+        self.button_groupbox.setObjectName("button_groupbox")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.button_groupbox)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.back_button = QtWidgets.QPushButton(self.button_groupbox)
+        self.back_button.setObjectName("back_button")
+        self.gridLayout_4.addWidget(self.back_button, 0, 2, 1, 1)
+        self.encode_button = QtWidgets.QPushButton(self.button_groupbox)
+        self.encode_button.setObjectName("encode_button")
+        self.gridLayout_4.addWidget(self.encode_button, 0, 0, 1, 1)
+        self.send_button = QtWidgets.QPushButton(self.button_groupbox)
+        self.send_button.setObjectName("send_button")
+        self.gridLayout_4.addWidget(self.send_button, 0, 1, 1, 1)
+
+        self.retranslateUi(SendWindow)
+        QtCore.QMetaObject.connectSlotsByName(SendWindow)
+
+    def retranslateUi(self, SendWindow):
+        _translate = QtCore.QCoreApplication.translate
+        SendWindow.setWindowTitle(_translate("SendWindow", "2B1Q Sender"))
+        self.hostname_label.setText(_translate("SendWindow", "Hostname"))
+        self.message_label.setText(_translate("SendWindow", "Message"))
+        self.binary_label.setText(_translate("SendWindow", "Binary Encoded"))
+        self.twoboneq_label.setText(_translate("SendWindow", "2B/1Q Encoded"))
+        self.back_button.setText(_translate("SendWindow", "Back"))
+        self.encode_button.setText(_translate("SendWindow", "Encode"))
+        self.send_button.setText(_translate("SendWindow", "Send"))
+
