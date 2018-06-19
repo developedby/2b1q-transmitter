@@ -7,10 +7,10 @@ import networkCommunication as nC
 
 class Sender(QtWidgets.QDialog):
     def __init__(self, main_window):
+        super(Sender, self).__init__()
         self.main_window = main_window
-        self.q_dialog = QtWidgets.QDialog()
         self.sender_window = Interface.sendWindow.Ui_SendWindow()
-        self.sender_window.setupUi(self.q_dialog)
+        self.sender_window.setupUi(self)
         self.sender_window.back_button.clicked.connect(lambda:self.closeWindow())
         self.sender_window.encode_button.clicked.connect(lambda:self.encodeMessageAndGraph())
         self.sender_window.send_button.clicked.connect(lambda: nC.sendNumberList(self.encoded_list, hostname=self.sender_window.hostname_box.text()))
@@ -18,13 +18,19 @@ class Sender(QtWidgets.QDialog):
         self.encoded_list = []
         self.sender_window.twoboneq_box.setReadOnly(True)
         self.sender_window.binary_box.setReadOnly(True)
+        self.bin_graph_path = "sender_binary_graph.png"
+        self.encoded_graph_path = "sender_encoded_graph.png"
+
+    def closeEvent(self, event):
+        self.main_window.closeEvent(event)
 
     def showWindow(self):
-        self.q_dialog.show()
+        self.show()
 
     def closeWindow(self):
-        self.q_dialog.close()
+        self.close()
         self.main_window.showWindow()
+        self.deleteGraphs()
 
     def encodeMessageAndGraph(self):
         self.bin_list = []
@@ -48,8 +54,12 @@ class Sender(QtWidgets.QDialog):
         self.sender_window.twoboneq_box.setText(encoded_text)
 
         # Plot the graph, save to a file, and load the image in the window
-        encoded_message_graph = signalGraph.PlotWaveformToFile(self.encoded_list, "encoder_grafic.png")
-        self.sender_window.encoded_wave.setPixmap(QtGui.QPixmap(encoded_message_graph))
-        bin_message_graph = signalGraph.PlotWaveformToFile(self.bin_list, "binary_grafic.png")
-        self.sender_window.binary_wave.setPixmap(QtGui.QPixmap(bin_message_graph))
+        signalGraph.PlotWaveformToFile(self.encoded_list, self.encoded_graph_path)
+        self.sender_window.encoded_wave.setPixmap(QtGui.QPixmap(self.encoded_graph_path))
+        signalGraph.PlotWaveformToFile(self.bin_list, self.bin_graph_path)
+        self.sender_window.binary_wave.setPixmap(QtGui.QPixmap(self.bin_graph_path))
+        
+    def deleteGraphs(self):
+        signalGraph.removeImage(self.encoded_graph_path)
+        signalGraph.removeImage(self.bin_graph_path)
 
