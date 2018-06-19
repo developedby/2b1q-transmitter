@@ -1,7 +1,4 @@
-import sys
-from PyQt5 import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
 
 import Interface.sendWindow
 import codec2b1q

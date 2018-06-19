@@ -38,6 +38,6 @@ def sendNumberList (num_list, hostname='localhost', port=3030):
     data = b''.join(data)
     netcat(data, hostname, port)
 
-def listenForNumberList (port):
+def listenForNumberList (port=3030):
     process = subprocess.Popen('nc -l -p %s' %(port,), shell=True, stdout=subprocess.PIPE)
     return process.stdout.read()
