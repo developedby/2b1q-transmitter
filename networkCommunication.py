@@ -1,7 +1,6 @@
 import socket
-import subprocess
 
-def netcat (data, hostname, port):
+def sendBytes (data, hostname, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         s.connect((hostname, port))
@@ -10,12 +9,6 @@ def netcat (data, hostname, port):
         return
     s.sendall(data)
     s.shutdown(socket.SHUT_WR)
-    while True:
-        data = s.recv(1024)
-        if data == None or data == b'':
-            break
-        print ("Received:", repr(data))
-    print ("Connection closed.")
     s.close()
 
 # Converts binary list and sends to <hostname>
@@ -29,7 +22,7 @@ def sendBinaryList (bin_list, hostname='localhost', port=3030):
             temp_byte = 0
     data = bytes(data)
     #return data
-    netcat(hostname, port, data)
+    sendBytes(hostname, port, data)
 
 # Sends a list of numbers encoded as bytes to <hostname>
 def sendNumberList (num_list, hostname='localhost', port=3030):
@@ -40,7 +33,21 @@ def sendNumberList (num_list, hostname='localhost', port=3030):
         else:
             data.append(bytes([256+num]))
     data = b''.join(data)
-    netcat(data, hostname, port)
+    sendBytes(data, hostname, port)
+
 def listenForNumberList (port=3030):
-    process = subprocess.Popen('nc -l -p %s' %(port,), shell=True, stdout=subprocess.PIPE)
-    return process.stdout.read()
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('', port))
+    s.listen(1)
+    addr = None
+    while not addr:
+        connection, addr = s.accept()
+
+    received_data = []
+    temp_data = True
+    while temp_data:
+        print('t')
+        temp_data = connection.recv(128)
+        received_data.append(temp_data)
+    connection.close()
+    return received_data[0]
