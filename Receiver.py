@@ -21,7 +21,7 @@ class Receiver(QtWidgets.QDialog):
 
     def closeEvent(self, event):
         self.main_window.closeEvent(event)
-
+    
     def showWindow(self):
         self.show()
 
@@ -29,6 +29,11 @@ class Receiver(QtWidgets.QDialog):
         self.main_window.showWindow()
         self.close()
         self.deleteGraphs()
+        self.receive_window.twoboneq_box.setText("")
+        self.receive_window.binary_box.setText("")
+        self.receive_window.message_box.setText("")
+        self.receive_window.encoded_wave.setPixmap(QtGui.QPixmap(""))
+        self.receive_window.binary_wave.setPixmap(QtGui.QPixmap(""))
 
     def listen(self):
         encoded_bytes = nc.listenForNumberList()

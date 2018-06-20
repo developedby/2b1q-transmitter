@@ -20,6 +20,13 @@ class Sender(QtWidgets.QDialog):
         self.sender_window.binary_box.setReadOnly(True)
         self.bin_graph_path = "sender_binary_graph.png"
         self.encoded_graph_path = "sender_encoded_graph.png"
+        self.sender_window.twoboneq_box.setText("")
+        self.sender_window.binary_box.setText("")
+        self.sender_window.message_box.setText("")
+        self.sender_window.hostname_box.setText("")
+        self.sender_window.encoded_wave.setText("")
+        self.sender_window.binary_wave.setText("")
+        
 
     def closeEvent(self, event):
         self.main_window.closeEvent(event)
@@ -31,6 +38,12 @@ class Sender(QtWidgets.QDialog):
         self.close()
         self.main_window.showWindow()
         self.deleteGraphs()
+        self.sender_window.twoboneq_box.setText("")
+        self.sender_window.binary_box.setText("")
+        self.sender_window.message_box.setText("")
+        self.sender_window.hostname_box.setText("")
+        self.sender_window.encoded_wave.setPixmap(QtGui.QPixmap(""))
+        self.sender_window.binary_wave.setPixmap(QtGui.QPixmap(""))
 
     def encodeMessageAndGraph(self):
         self.bin_list = []
