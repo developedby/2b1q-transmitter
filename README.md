@@ -11,6 +11,6 @@ Python module dependencies:
   * sys
   
 Authors:
- - [Nicolas Abril](https://github.com/developedby)
+ - [Nicolas Abril](https://github.com/developedby/)
  - [Lucca Rawlyk Holosbach](https://github.com/Lv101Magikarp)
  - [Álefe Felipe Gonçalves Pereira Dias](https://github.com/AlefeFelipe)
