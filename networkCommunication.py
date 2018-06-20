@@ -3,7 +3,11 @@ import subprocess
 
 def netcat (data, hostname, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((hostname, port))
+    try:
+        s.connect((hostname, port))
+    except:
+        print("Unable to connect to hostname")
+        return
     s.sendall(data)
     s.shutdown(socket.SHUT_WR)
     while True:
@@ -37,7 +41,6 @@ def sendNumberList (num_list, hostname='localhost', port=3030):
             data.append(bytes([256+num]))
     data = b''.join(data)
     netcat(data, hostname, port)
-
 def listenForNumberList (port=3030):
     process = subprocess.Popen('nc -l -p %s' %(port,), shell=True, stdout=subprocess.PIPE)
     return process.stdout.read()

@@ -26,7 +26,7 @@ class Sender(QtWidgets.QDialog):
         self.sender_window.hostname_box.setText("")
         self.sender_window.encoded_wave.setText("")
         self.sender_window.binary_wave.setText("")
-        
+
 
     def closeEvent(self, event):
         self.main_window.closeEvent(event)
@@ -56,7 +56,7 @@ class Sender(QtWidgets.QDialog):
             for bin_char in str_char_in_bin:
                 self.bin_list.append(int(bin_char))
         #
-        bin_text = ''.join(list(map(str,self.bin_list)))     
+        bin_text = ''.join(list(map(str,self.bin_list)))
         self.sender_window.binary_box.setText(bin_text)
 
         # Encodes the binary list message to a 2B1Q binary list
@@ -67,12 +67,11 @@ class Sender(QtWidgets.QDialog):
         self.sender_window.twoboneq_box.setText(encoded_text)
 
         # Plot the graph, save to a file, and load the image in the window
-        signalGraph.PlotWaveformToFile(self.encoded_list, self.encoded_graph_path)
+        signalGraph.PlotWaveformToFile(self.encoded_list, self.encoded_graph_path, wave_type='2b1q')
         self.sender_window.encoded_wave.setPixmap(QtGui.QPixmap(self.encoded_graph_path))
-        signalGraph.PlotWaveformToFile(self.bin_list, self.bin_graph_path)
+        signalGraph.PlotWaveformToFile(self.bin_list, self.bin_graph_path, wave_type='binary')
         self.sender_window.binary_wave.setPixmap(QtGui.QPixmap(self.bin_graph_path))
-        
+
     def deleteGraphs(self):
         signalGraph.removeImage(self.encoded_graph_path)
         signalGraph.removeImage(self.bin_graph_path)
-

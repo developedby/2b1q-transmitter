@@ -21,7 +21,7 @@ class Receiver(QtWidgets.QDialog):
 
     def closeEvent(self, event):
         self.main_window.closeEvent(event)
-    
+
     def showWindow(self):
         self.show()
 
@@ -55,17 +55,16 @@ class Receiver(QtWidgets.QDialog):
             if i%8 == 7:
                 original_message += chr(temp_byte)
                 temp_byte = 0
-                
+
         self.receive_window.binary_box.setText(bin_message)
         self.receive_window.twoboneq_box.setText(encoded_message)
         self.receive_window.message_box.setText(original_message)
-        
-        signalGraph.PlotWaveformToFile(encoded_list, self.encoded_graph_path)
+
+        signalGraph.PlotWaveformToFile(encoded_list, self.encoded_graph_path, wave_type='2b1q')
         self.receive_window.encoded_wave.setPixmap(QtGui.QPixmap(self.encoded_graph_path))
-        signalGraph.PlotWaveformToFile(bin_list, self.bin_graph_path)
+        signalGraph.PlotWaveformToFile(bin_list, self.bin_graph_path, wave_type='binary')
         self.receive_window.binary_wave.setPixmap(QtGui.QPixmap(self.bin_graph_path))
-        
+
     def deleteGraphs(self):
         signalGraph.removeImage(self.encoded_graph_path)
         signalGraph.removeImage(self.bin_graph_path)
-        
